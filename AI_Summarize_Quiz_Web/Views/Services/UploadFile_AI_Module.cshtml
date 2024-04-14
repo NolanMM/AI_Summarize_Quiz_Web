@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "UploadFile_AI_Module";
+    string fileName = ViewBag.FileName;
+}
+
+<link rel="stylesheet" type="text/css" href="~/css/Loading.css">
+<script src="/js/FetchData.js"></script>
+
+<div id="Download-content" style="display:none">
+    <input type="hidden" id="fileName_input" value="@fileName" />
+    <h1>Download File</h1>
+</div>
+
+
+<div class="loading-content">
+    <div class="bouncing-text">
+        <div class="L">L</div>
+        <div class="O">O</div>
+        <div class="A">A</div>
+        <div class="D">D</div>
+        <div class="I">I</div>
+        <div class="N">N</div>
+        <div class="G">G</div>
+        <div class="first">.</div>
+        <div class="second">.</div>
+        <div class="third">.</div>
+    </div>
+    <div class="loading-bar">
+        <div class="progress" id="progress"></div>
+        <div class="progress-text" id="progress-text">0%</div>
+    </div>
+</div>
+
+<script>
+    const progressBar = document.getElementById('progress');
+    const progressText = document.getElementById('progress-text');
+    const totalTime = 60000;
+    const updateInterval = totalTime / 100;
+    let progress = 0;
+    function updateProgress() {
+        progress++;
+        progressBar.style.width = progress + '%';
+        progressText.textContent = progress + '%';
+
+        if (progress >= 45 && progress < 50) {
+            progressText.textContent = "Half Wayy!!!";
+        }
+        if (progress == 50) {
+            progressBar.style.width = progress + '%';
+        }
+        if (progress >= 65 && progress < 75) {
+            progressText.textContent = "Almost There!!!";
+        }
+        if (progress == 80) {
+            progressBar.style.width = progress + '%';
+        }
+        if (progress >= 85 && progress < 100) {
+            progressText.textContent = "1 Second!!!";
+        }
+        if (progress == 100) {
+            progressBar.style.width = progress + '%';
+            clearInterval(progressInterval);
+        }
+    }
+    const progressInterval = setInterval(updateProgress, updateInterval);
+
+</script>
