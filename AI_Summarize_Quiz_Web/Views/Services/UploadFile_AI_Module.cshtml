@@ -9,12 +9,15 @@
 
 <link rel="stylesheet" type="text/css" href="~/css/Loading.css">
 
-<div>
+<div id="Download_content_box_outside" style="display:none" class="container_Uploadfile text-center">
+    <h1>Download File</h1>
+    <br />
+    <input type="hidden" id="fileName_input" value="@fileName" />
+    <input type="hidden" id="sessionID_input" value="@sessionID" />
     <div id="Download-content" style="display:none">
-        <input type="hidden" id="fileName_input" value="@fileName" />
-        <input type="hidden" id="sessionID_input" value="@sessionID" />
-        <h1>Download File</h1>
+
     </div>
+    <br />
     <button id="ReturnButton" class="btn btn-primary" onclick="ReturnButton()">Return</button>
 </div>
 

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI_Summarize_Quiz_Web", "AI_Summarize_Quiz_Web\AI_Summarize_Quiz_Web.csproj", "{B11B5FC8-9E42-4B9F-B53B-6379EC2408F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AI_Summarize_Quiz_Web", "AI_Summarize_Quiz_Web\AI_Summarize_Quiz_Web.csproj", "{B11B5FC8-9E42-4B9F-B53B-6379EC2408F1}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AutomatedTestingAPI", "AutomatedTestingAPI\AutomatedTestingAPI.pyproj", "{0AC74028-305F-4706-9B74-0D84A78612B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{B11B5FC8-9E42-4B9F-B53B-6379EC2408F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B11B5FC8-9E42-4B9F-B53B-6379EC2408F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B11B5FC8-9E42-4B9F-B53B-6379EC2408F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AC74028-305F-4706-9B74-0D84A78612B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AC74028-305F-4706-9B74-0D84A78612B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

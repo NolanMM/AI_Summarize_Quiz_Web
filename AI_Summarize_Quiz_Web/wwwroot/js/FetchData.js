@@ -16,14 +16,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const fileName = document.getElementById('fileName_input').value;
 
         const downloadContent = document.getElementById('Download-content');
+        const box_download = document.getElementById('Download_content_box_outside');
+        box_download.style.textAlign = 'center';
         /* downloadContent.style.display = 'contents'; */
         const downloadLink = document.createElement('a');
         downloadLink.id = 'download_btnn';
         downloadLink.href = storedFilePath;
         downloadLink.download = fileName;
         downloadLink.textContent = 'Download File';
+        downloadLink.style.textAlign = 'center';
         // Append the <a> element to Download-content
         downloadContent.appendChild(downloadLink);
+        box_download.style.display = 'contents';
         downloadContent.style.display = 'contents';
     }
 });
@@ -35,13 +39,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const filePath = "https://localhost:7125/Download/MockExam_" + sessionID + ".pdf";
 
     try {
-        const response = $.ajax({
+        $.ajax({
             type: "POST",
             url: "https://localhost:7125/UploadFile_AI_Module_API/" + fileName + "/" + sessionID,
             dataType: "json",
+
+            success: function (data) {
+                console.log(data);
+            },
+
+            error: function (error) {
+                console.log(error);
+            }
         });
 
-        console.log(response);
+        //console.log(response);
 
         sessionStorage.setItem('filePath', filePath);
 
@@ -53,5 +65,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function ReturnButton() {
     sessionStorage.clear();
-    window.location.href = "https://localhost:7125/Services/UploadFile";
+    window.location.href = "https://localhost:7125/";
 }

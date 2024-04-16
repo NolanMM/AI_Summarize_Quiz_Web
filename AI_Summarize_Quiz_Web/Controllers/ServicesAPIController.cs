@@ -67,6 +67,10 @@ namespace AI_Summarize_Quiz_Web.Controllers
                     string values_ = mock_exam_key.mock_exam;
                     string values = "<pre>" + values_ + "</pre>";
 
+                    // Save the processed data to a text file
+                    string TextFilePath = Path.Combine(_environment.WebRootPath, "UploadedFiles", "MockExam_" + SessionId + ".txt");
+                    System.IO.File.WriteAllText(TextFilePath, values_);
+
                     // Save the processed data to a html file
                     string htmlFilePath = Path.Combine(_environment.WebRootPath, "UploadedFiles", "MockExam_" + SessionId + ".html");
                     System.IO.File.WriteAllText(htmlFilePath, values);
@@ -115,6 +119,34 @@ namespace AI_Summarize_Quiz_Web.Controllers
             string filePath = Path.Combine(_environment.WebRootPath, "UploadedFiles", file);
             byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
             return File(fileBytes, "application/force-download", file);
+        }
+
+        // Get text file return json
+        [HttpGet("/DownloadText/{file}")]
+        public IActionResult DownloadText(string file)
+        {
+            // Check if file contain txt
+            if (!file.Contains(".txt"))
+            {
+                return Json("File is not a text file");
+            }
+            string filePath = Path.Combine(_environment.WebRootPath, "UploadedFiles", file);
+            string fileText = System.IO.File.ReadAllText(filePath);
+            return Json(fileText);
+        }
+
+        [HttpGet("/CheckFile/{file}")]
+        public IActionResult CheckFile(string file)
+        {
+            string filePath = Path.Combine(_environment.WebRootPath, "UploadedFiles", file);
+            if (System.IO.File.Exists(filePath))
+            {
+                return Json("File exist");
+            }
+            else
+            {
+                return Json("File does not exist");
+            }
         }
     }
 }

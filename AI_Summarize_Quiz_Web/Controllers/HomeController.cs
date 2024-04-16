@@ -15,6 +15,11 @@ namespace AI_Summarize_Quiz_Web.Controllers
 
         public IActionResult Index()
         {
+            if (this.Request.Cookies.ContainsKey("SessionID"))
+            {
+                this.Response.Cookies.Delete("SessionID");
+                this.Response.Cookies.Delete("FileName");
+            }
             return View();
         }
 

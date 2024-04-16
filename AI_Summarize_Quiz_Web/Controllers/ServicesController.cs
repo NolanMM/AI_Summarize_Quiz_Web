@@ -70,6 +70,13 @@ namespace AI_Summarize_Quiz_Web.Controllers
                                 string userId_ = responseData.user_id;
                                 ViewBag.FileName = _FileName;
                                 ViewBag.SessionId = userId_;
+                                if (this.Request.Cookies.ContainsKey("SessionID"))
+                                {
+                                    this.Response.Cookies.Delete("SessionID");
+                                    this.Response.Cookies.Delete("FileName");
+                                }
+                                this.Response.Cookies.Append("SessionID", userId_);
+                                this.Response.Cookies.Append("FileName", _FileName);
                                 return View();
                             }
                             else
