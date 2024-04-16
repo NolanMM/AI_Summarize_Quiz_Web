@@ -50,3 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Error occurred:", error);
     }
 }
+
+function ReturnButton() {
+    sessionStorage.clear();
+    window.location.href = "https://localhost:7125/Services/UploadFile";
+}

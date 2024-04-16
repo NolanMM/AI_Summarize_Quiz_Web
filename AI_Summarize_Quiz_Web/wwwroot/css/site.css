@@ -18,5 +18,98 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Hero Section */
+
+.hero-section {
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://media.giphy.com/media/7VzgMsB6FLCilwS30v/giphy.gif');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-text {
+    font-size: 5rem; /* Adjust font size as needed */
+    text-align: center;
+}
+
+    .hero-text h1 {
+        font-size: 4rem; /* Adjust font size as needed */
+        text-align: center;
+    }
+
+.btn-custom {
+    background-color: black;
+    color: white;
+    border-color: white;
+    border-width: 5px;
+    border-radius: 10px;
+}
+
+.btn-custom:hover {
+    background-color: white;
+    color: black;
+}
+
+
+/* Uploadfile Section */
+
+.container_Uploadfile {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.form-group input[type="submit"] {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border-width: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-color: black;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: darkred;
+    color: white;
+}
+
+.message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }

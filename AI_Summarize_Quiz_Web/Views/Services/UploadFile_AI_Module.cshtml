@@ -3,16 +3,20 @@
     string fileName = ViewBag.FileName;
     string sessionID = ViewBag.SessionId;
 }
+@section Scripts {
+    <script src="~/js/FetchData.js"></script>
+}
 
 <link rel="stylesheet" type="text/css" href="~/css/Loading.css">
-<script src="/js/FetchData.js"></script>
 
-<div id="Download-content" style="display:none">
-    <input type="hidden" id="fileName_input" value="@fileName" />
-    <input type="hidden" id="sessionID_input" value="@sessionID" />
-    <h1>Download File</h1>
+<div>
+    <div id="Download-content" style="display:none">
+        <input type="hidden" id="fileName_input" value="@fileName" />
+        <input type="hidden" id="sessionID_input" value="@sessionID" />
+        <h1>Download File</h1>
+    </div>
+    <button id="ReturnButton" class="btn btn-primary" onclick="ReturnButton()">Return</button>
 </div>
-
 
 <div class="loading-content">
     <div class="bouncing-text">
@@ -36,12 +40,13 @@
 <script>
     const progressBar = document.getElementById('progress');
     const progressText = document.getElementById('progress-text');
-    const totalTime = 60000;
+    const totalTime = 80000;    // 80 secs
     const updateInterval = totalTime / 100;
     let progress = 0;
     function updateProgress() {
         progress++;
-        progressBar.style.width = progress + '%';
+        withd__percent = progress/8;
+        progressBar.style.width = withd__percent + '%';
         progressText.textContent = progress + '%';
 
         if (progress >= 45 && progress < 50) {
@@ -65,5 +70,4 @@
         }
     }
     const progressInterval = setInterval(updateProgress, updateInterval);
-
 </script>

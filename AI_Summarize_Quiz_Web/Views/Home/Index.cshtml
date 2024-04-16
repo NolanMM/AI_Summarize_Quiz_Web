@@ -1,5 +1,17 @@
 ﻿@{
     ViewBag.Title = "Welcome Page";
 }
-<h2>Welcome to AI Services</h2>
-<a asp-action="UploadFile" asp-controller="Services">Upload a file</a>
+
+<script>
+    if (sessionStorage.getItem("fileName") != null) {
+        sessionStorage.clear();
+    }
+</script>
+
+<div class="hero-section bg-dark text-white">
+    <div class="hero-text">
+        <h1>Welcome to AI Services</h1>
+        <br>
+        <a asp-action="UploadFile" asp-controller="Services" class="btn btn-custom btn-lg">Upload a file</a>
+    </div>
+</div>

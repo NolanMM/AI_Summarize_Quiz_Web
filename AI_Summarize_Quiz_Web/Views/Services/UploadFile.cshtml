@@ -2,7 +2,7 @@
     ViewBag.Title = "UploadFile";
 }
 
-<h2>UploadFile</h2>
+@* <h2>UploadFile</h2>
 
 @using (Html.BeginForm("UploadFile_AI_Module", "Services", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -11,4 +11,18 @@
         <input type="submit" value="Upload" />
         @ViewBag.Message
     </div>
-}
+} *@
+
+<div class="container_Uploadfile">
+    <h2>Upload File</h2>
+    <form action="/Services/UploadFile_AI_Module" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file">Select File:</label>
+            <input type="file" name="file" id="file" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Upload"/>
+            <div class="message">@ViewBag.Message</div>
+        </div>
+    </form>
+</div>
