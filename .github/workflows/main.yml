@@ -11,8 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      CONNECTION_STRING: "Server=(LocalDb)\\MSSQLLocalDB;Database=EnterpriseProjectDB;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true"
+      CONNECTION_STRING: "Server=localhost,1433;Database=EnterpriseProjectDB;User Id=sa;Password=Group7Project;MultipleActiveResultSets=true;TrustServerCertificate=true"
       ASPNETCORE_URLS: http://localhost:7125
+
+    services:
+      sql-server:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          ACCEPT_EULA: "Y"
+          SA_PASSWORD: "Group7Project"
+        options: --health-cmd "SELECT 1" --health-interval 10s --health-timeout 5s --health-retries 3
 
     steps:
       - uses: actions/checkout@v3
@@ -33,9 +41,19 @@ jobs:
           pip install requests
           pip install pytest
 
-      - name: Start LocalDB
+      - name: Wait for SQL Server to be ready
         run: |
-          sqllocaldb start MSSQLLocalDB
+          n=0
+          until [ $n -ge 5 ]; do
+            nc -z localhost 1433 && break
+            n=$((n+1))
+            sleep 10
+          done
+          if [ $n -ge 5 ]; then
+            echo "Timeout waiting for SQL Server to start"
+            exit 1
+          fi
+          echo "SQL Server is ready"
 
       - name: Restore
         run: dotnet restore ./AI_Summarize_Quiz_Web.sln
