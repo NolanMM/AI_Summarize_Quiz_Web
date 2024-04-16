@@ -10,6 +10,10 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
+    env:
+      CONNECTION_STRING: "Server=(LocalDb)\\MSSQLLocalDB;Database=EnterpriseProjectDB;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true"
+      ASPNETCORE_URLS: http://localhost:7125
+
     steps:
       - uses: actions/checkout@v3
 
@@ -18,29 +22,34 @@ jobs:
         with:
           dotnet-version: "8.x"
 
-      - name: Set up Python 3.9 to meet the requirements
+      - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
           python-version: 3.9
-          
+
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests
           pip install pytest
-        
+
+      - name: Start LocalDB
+        run: |
+          sqllocaldb start MSSQLLocalDB
+
       - name: Restore
         run: dotnet restore ./AI_Summarize_Quiz_Web.sln
 
       - name: Build
         run: dotnet build ./AI_Summarize_Quiz_Web.sln --configuration Release --no-restore
 
+      - name: Set Connection String
+        run: echo "ConnectionStrings:EnterpriseProjectDB=$CONNECTION_STRING" >> ./AI_Summarize_Quiz_Web/appsettings.json
+
       - name: Start server
         run: dotnet run --project ./AI_Summarize_Quiz_Web
-        env:
-          ASPNETCORE_URLS: http://localhost:7125
-          
+
       - name: Run Pytest
-        run:  |
+        run: |
           cd AutomatedTestingAPI
           pytest AutomatedTestingAPI.py
