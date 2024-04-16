@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Syncfusion.HtmlConverter;
 using Syncfusion.Pdf;
+using System.Text.Json;
 
 namespace AI_Summarize_Quiz_Web.Controllers
 {
@@ -38,7 +39,7 @@ namespace AI_Summarize_Quiz_Web.Controllers
             }
         }
 
-        [HttpGet("/UploadFile_AI_Module/{fileName}/{SessionId}")]
+        [HttpPost("/UploadFile_AI_Module_API/{fileName}/{SessionId}")]
         public async Task<ActionResult> UploadFile_AI_Module(string fileName, string SessionId)
         {
             try
@@ -86,9 +87,14 @@ namespace AI_Summarize_Quiz_Web.Controllers
                         // return the file path
                         document.Close(true);
                     }
-                    
+                    var options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve
+                    };
                     // Return Json success with SessionId
-                    return Ok(new { SessionId = SessionId });
+
+                    var SessionId_packages = new { SessionId = SessionId };
+                    return Json(SessionId_packages, options);
                 }
                 else
                 {
