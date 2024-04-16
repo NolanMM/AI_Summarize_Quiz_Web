@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "UploadFile_AI_Module";
     string fileName = ViewBag.FileName;
+    string sessionID = ViewBag.SessionId;
 }
 
 <link rel="stylesheet" type="text/css" href="~/css/Loading.css">
@@ -8,6 +9,7 @@
 
 <div id="Download-content" style="display:none">
     <input type="hidden" id="fileName_input" value="@fileName" />
+    <input type="hidden" id="sessionID_input" value="@sessionID" />
     <h1>Download File</h1>
 </div>
 

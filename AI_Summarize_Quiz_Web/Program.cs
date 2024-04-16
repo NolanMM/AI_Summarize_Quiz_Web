@@ -11,6 +11,9 @@ builder.Services.AddControllersWithViews();
 var connStr = builder.Configuration.GetConnectionString("EnterpriseProjectDB");
 builder.Services.AddDbContext<EnterpriseProjectContext>(options => options.UseSqlServer(connStr));
 
+// Add singleton for the AI module
+builder.Services.AddSingleton<FileDictionary>();
+
 // Add Identity services
 builder.Services.AddIdentity<User, IdentityRole>(options => {
     options.Password.RequiredLength = 6;
