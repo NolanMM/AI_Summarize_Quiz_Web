@@ -1,0 +1,199 @@
+﻿.loading-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.bouncing-text {
+    position: relative;
+    display: flex;
+    font-size: 190px;
+    font-family: Arial Black;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.first, .second, .third {
+    color: #8B0000; /* Dark red */
+    text-shadow: 0 3px #ffffff, 0 5px #ffffff, 0 7px #ffffff;
+}
+
+.L, .O, .A, .D, .I, .N, .G {
+    color: #8B0000; /* Dark red */
+    text-shadow: 0 3px #8B0000, 0 5px #8B0000, 0 7px #8B0000;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1, 1) translateY(0);
+    }
+
+    10% {
+        transform: scale(1.1, .9) translateY(0);
+    }
+
+    30% {
+        transform: scale(.9, 1.1) translateY(-55px);
+    }
+
+    50% {
+        transform: scale(1.05, .95) translateY(0);
+    }
+
+    58% {
+        transform: scale(1, 1) translateY(-7px);
+    }
+
+    65% {
+        transform: scale(1, 1) translateY(0);
+    }
+
+    100% {
+        transform: scale(1, 1) translateY(0);
+    }
+}
+
+.L {
+    animation: bounce 1s ease infinite;
+}
+
+.O {
+    animation: bounce 1s ease infinite .1s;
+}
+
+.A {
+    animation: bounce 1s ease infinite .2s;
+}
+
+.D {
+    animation: bounce 1s ease infinite .3s;
+}
+
+.I {
+    animation: bounce 1s ease infinite .4s;
+}
+
+.N {
+    animation: bounce 1s ease infinite .5s;
+}
+
+.G {
+    animation: bounce 1s ease infinite .6s;
+}
+
+.first {
+    animation: bounce 1s ease infinite .7s;
+}
+
+.second {
+    animation: bounce 1s ease infinite .8s;
+}
+
+.third {
+    animation: bounce 1s ease infinite .9s;
+}
+
+.bouncing-text:before {
+    left: 0;
+    animation: scale 1s linear infinite;
+}
+
+@keyframes scale {
+    0% {
+        transform: scaleX(1);
+    }
+
+    25% {
+        transform: scaleX(0.4);
+    }
+
+    50% {
+        transform: scaleX(1);
+    }
+
+    75% {
+        transform: scaleX(0.9);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+.bouncing-text:after {
+    left: 57px;
+    animation: scale 1s linear infinite .1s;
+}
+
+.shadow:before {
+    left: 116px;
+    animation: scale 1s linear infinite .2s;
+}
+
+.shadow:after {
+    left: 175px;
+    animation: scale 1s linear infinite .3s;
+}
+
+.shadow-two:before {
+    left: 232px;
+    animation: scale 1s linear infinite .4s;
+}
+
+.shadow-two:after {
+    left: 285px;
+    animation: scale 1s linear infinite .5s;
+}
+
+.loading-bar {
+    position: relative;
+    width: 900px;
+    height: 45px;
+    background-color: #000000; /* Dark background */
+    border-radius: 10px;
+    overflow: hidden;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #8B0000; /* Dark red */
+    animation: progress-animation 20s linear infinite;
+}
+
+.progress-text {
+    position: absolute;
+    font-weight: 800;
+    font-size: 1.4em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+@keyframes progress-animation {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 25%;
+    }
+
+    50% {
+        width: 50%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}

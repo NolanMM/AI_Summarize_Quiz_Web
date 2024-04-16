@@ -1,8 +1,17 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Welcome Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<script>
+    if (sessionStorage.getItem("fileName") != null) {
+        sessionStorage.clear();
+    }
+</script>
+
+<div class="hero-section bg-dark text-white">
+    <div class="hero-text">
+        <h1>Welcome to AI Services</h1>
+        <br>
+        <a asp-action="UploadFile" asp-controller="Services" class="btn btn-custom btn-lg">Upload a file</a>
+    </div>
 </div>

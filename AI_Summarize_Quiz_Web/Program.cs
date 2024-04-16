@@ -1,7 +1,44 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using AI_Summarize_Quiz_Web.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add services for the database
+var connStr = builder.Configuration.GetConnectionString("EnterpriseProjectDB");
+builder.Services.AddDbContext<EnterpriseProjectContext>(options => options.UseSqlServer(connStr));
+
+// Add singleton for the AI module
+builder.Services.AddSingleton<FileDictionary>();
+
+// Add Identity services
+builder.Services.AddIdentity<User, IdentityRole>(options => {
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireDigit = true;
+})
+.AddEntityFrameworkStores<EnterpriseProjectContext>()
+.AddDefaultTokenProviders();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .WithExposedHeaders("Content-Disposition");
+        });
+});
 
 var app = builder.Build();
 
@@ -18,10 +55,18 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+using (var scope = scopeFactory.CreateScope())
+{
+    await EnterpriseProjectContext.CreateAdminUser(scope.ServiceProvider);
+}
 
 app.Run();
