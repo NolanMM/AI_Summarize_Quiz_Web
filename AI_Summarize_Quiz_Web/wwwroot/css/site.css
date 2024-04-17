@@ -26,6 +26,17 @@ body {
     background-color: #121212;
 }
 
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+#sideleft, #sideright {
+    float: left;
+    height: 100%;
+    width: 50%;
+}
+
 /* Use for the dark theme elevation 
    Reference: https://m2.material.io/design/color/dark-theme.html#properties
 */
@@ -89,7 +100,6 @@ body {
     max-width: 1000px;  
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     justify-content: center;
