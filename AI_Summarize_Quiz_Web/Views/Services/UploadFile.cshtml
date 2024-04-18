@@ -24,7 +24,7 @@
                 <form action="/Services/UploadFile_AI_Module" method="post" enctype="multipart/form-data">
                     <div class="form-group text-light">
                         <label for="file">Select File:</label>
-                        <input type="file" name="file" id="file" />
+                        <input type="file" name="file" id="file" onchange="displayFileContent(event)"  />
                     </div>
                     <div class="form-group text-light">
                         <input type="submit" value="Upload" />
@@ -35,14 +35,37 @@
         </div>
 
         <!-- Right Side -->
-        <div class="col-md-6" id="sideright">
+@*         <div class="col-md-6" id="sideright">
             <div>
                 <iframe src="http://infolab.stanford.edu/pub/papers/google.pdf#toolbar=0&navpanes=0&scrollbar=0"
                         frameBorder="0"
                         scrolling="auto"
                         height="100%"
                         width="100%"></iframe>
-        </div>
+        </div> *@
+
+
+        <div class="col-md-6" id="fileContent"></div>
 
     </div>
 </div>
+
+<script>
+    function displayFileContent(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+
+        if (file.type === "application/pdf") {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const fileContent = e.target.result;
+                document.getElementById('fileContent').innerHTML = `<iframe src="${fileContent}" width="100%" height="100%" style="border: none;"></iframe>`;
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            document.getElementById('fileContent').innerText = "Only PDF files are supported.";
+        }
+    }
+</script>

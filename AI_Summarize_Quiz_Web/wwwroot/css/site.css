@@ -136,7 +136,7 @@ html, body {
 }
 
 .form-group input[type="submit"]:hover {
-    background-color: darkred;
+    background-color: #3700B3;
     color: white;
 }
 

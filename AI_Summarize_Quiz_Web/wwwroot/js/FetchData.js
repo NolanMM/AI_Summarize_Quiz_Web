@@ -24,11 +24,28 @@ document.addEventListener('DOMContentLoaded', function () {
         downloadLink.href = storedFilePath;
         downloadLink.download = fileName;
         downloadLink.textContent = 'Download File';
-        downloadLink.style.textAlign = 'center';
         // Append the <a> element to Download-content
         downloadContent.appendChild(downloadLink);
         box_download.style.display = 'contents';
         downloadContent.style.display = 'contents';
+
+        // Check if there's a stored file path
+        //if (storedFilePath) {
+        //    const htmlFilePath = storedFilePath.replace(/\.pdf$/, ".txt");
+        //    // Read PDF file from stored file path
+
+
+        //    var iframe = document.createElement('iframe');
+        //    iframe.src = htmlFilePath;
+        //    iframe.width = "100%";
+        //    iframe.height = "100%";
+        //    iframe.style.border = "none";
+
+        //    document.getElementById('fileContent').appendChild(iframe);
+
+        //} else {
+            
+        //}
     }
 });
 
