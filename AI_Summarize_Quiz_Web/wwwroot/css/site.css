@@ -23,8 +23,39 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #121212;
 }
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+#sideleft, #sideright {
+    float: left;
+    height: 100%;
+    width: 50%;
+}
+
+/* Use for the dark theme elevation 
+   Reference: https://m2.material.io/design/color/dark-theme.html#properties
+*/
+
+.dp01 {
+    background-color: hsla(0, 100%, 100%, 0.05);
+    box-shadow:
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    0px 1px 1px 0px hsla(0,0%,0%,0.14), 0px 2px 1px -1px hsla(0,0%,0%,0.12), 0px 1px 3px 0px hsla(0,0%,0%,0.2);
+}
+
+.dp02 {
+    background-color: hsla(0, 100%, 100%, 0.07);
+    box-shadow:
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    0px 2px 2px 0px hsla(0,0%,0%,0.14), 0px 3px 1px -2px hsla(0,0%,0%,0.12), 0px 1px 5px 0px hsla(0,0%,0%,0.2);
+}
+
+
 
 /* Hero Section */
 
@@ -69,7 +100,6 @@ body {
     max-width: 1000px;  
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     justify-content: center;
@@ -106,7 +136,7 @@ body {
 }
 
 .form-group input[type="submit"]:hover {
-    background-color: darkred;
+    background-color: #3700B3;
     color: white;
 }
 

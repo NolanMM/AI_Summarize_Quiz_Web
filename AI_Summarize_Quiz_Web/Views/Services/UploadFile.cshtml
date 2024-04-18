@@ -13,16 +13,59 @@
     </div>
 } *@
 
-<div class="container_Uploadfile">
-    <h2>Upload File</h2>
-    <form action="/Services/UploadFile_AI_Module" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="file">Select File:</label>
-            <input type="file" name="file" id="file" />
+<div class="flex-container" style="height: 100%;">
+    <div class="modal-body row">
+
+        <!-- Left Side -->
+        <div class="container_Uploadfile dp01 col-md-6" id="sideleft">
+            <div class="d-flex flex-column align-items-center justify-content-center text-light">
+                <h1>Welcome to Test Generator!</h1>
+                <h2>Upload File</h2>
+                <form action="/Services/UploadFile_AI_Module" method="post" enctype="multipart/form-data">
+                    <div class="form-group text-light">
+                        <label for="file">Select File:</label>
+                        <input type="file" name="file" id="file" onchange="displayFileContent(event)"  />
+                    </div>
+                    <div class="form-group text-light">
+                        <input type="submit" value="Upload" />
+                        <div class="message">@ViewBag.Message</div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Upload"/>
-            <div class="message">@ViewBag.Message</div>
-        </div>
-    </form>
+
+        <!-- Right Side -->
+@*         <div class="col-md-6" id="sideright">
+            <div>
+                <iframe src="http://infolab.stanford.edu/pub/papers/google.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                        frameBorder="0"
+                        scrolling="auto"
+                        height="100%"
+                        width="100%"></iframe>
+        </div> *@
+
+
+        <div class="col-md-6" id="fileContent"></div>
+
+    </div>
 </div>
+
+<script>
+    function displayFileContent(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+
+        if (file.type === "application/pdf") {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const fileContent = e.target.result;
+                document.getElementById('fileContent').innerHTML = `<iframe src="${fileContent}" width="100%" height="100%" style="border: none;"></iframe>`;
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            document.getElementById('fileContent').innerText = "Only PDF files are supported.";
+        }
+    }
+</script>

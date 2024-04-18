@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm dp02 navbar-dark box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AI_Summarize_Quiz_Web</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -23,10 +23,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                     <!-- Login/register/logout Controls -->
@@ -35,17 +35,17 @@
                         {
                             <li class="nav-item">
                                 <form class="form-inline" asp-controller="Account" asp-action="LogOut" method="post">
-                                    <input type="submit" class="nav-link btn btn-link text-dark" value="Logout @User.Identity.Name" />
+                                    <input type="submit" class="nav-link btn btn-link" value="Logout @User.Identity.Name" />
                                 </form>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
+                                <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="LogIn">Login</a>
+                                <a class="nav-link" asp-controller="Account" asp-action="LogIn">Login</a>
                             </li>
                         }
                     </ul>
@@ -54,13 +54,10 @@
             </div>
         </nav>
     </header>
-    <div class="container-fluid px-0">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
+    <main role="main" style="height: auto">
+        @RenderBody()
+    </main>
+    <footer class="footer dp02 text-muted">
         <div class="container">
             &copy; 2024 - AI_Summarize_Quiz_Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
