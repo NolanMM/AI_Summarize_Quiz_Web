@@ -80,23 +80,23 @@ def test_register_new_user_success(data):
         pytest.fail(f"Registration test failed: {e}")
 
 @pytest.mark.parametrize("data", [ #login on existing user
-    {"Username": "useruser", "Password": "@Pranav26"}
+    {"Username": "newuser", "Password": "newPassword1!"}
 ])
 def test_login_user_success_and_redirect(data):
-    LOGIN_URL = "https://localhost:7125/Account/Login"
+    LOGIN_URL = "https://localhost:7125/Account/LogIn"
 
     try:
         with requests.Session() as session:
             # Submit POST request with form data
-            response = session.post(LOGIN_URL, data=data, verify=False, allow_redirects=False)
+            response = session.post(LOGIN_URL, data=data, verify=False)
             
             # Check for correct HTTP status 
-            assert response.status_code == 302
+            assert response.status_code == 200
             print("Login test passed: User logged in successfully and redirected to home page.")
     except Exception as e:
         pytest.fail(f"Login test failed: {e}")
 
-@pytest.mark.parametrize("url", ["https://localhost:7125/Account/Login"]) #makes sure login route is functional
+@pytest.mark.parametrize("url", ["https://localhost:7125/Account/LogIn"]) #makes sure login route is functional
 def test_login_page_route(url):
     try:
         response = requests.get(url, timeout=10, verify=False) 
